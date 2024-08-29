@@ -18,10 +18,7 @@ public class Triangle {
     }
 
     public boolean exist(double ab, double ac, double bc) {
-        if (ab + ac <= bc || ab + bc <= ac || ac + bc <= ab) {
-            return false;
-        }
-        return true;
+        return !(ab + ac <= bc || ab + bc <= ac || ac + bc <= ab);
     }
 
     public double area() {
@@ -31,8 +28,7 @@ public class Triangle {
         double bc = second.distance(third);
         if (this.exist(ab, ac, bc)) {
             double p = semiPerimeter(ab, ac, bc);
-            double s = sqrt(p * (p - ab) * (p - bc) * (p - ac));
-            result = s;
+            result = sqrt(p * (p - ab) * (p - bc) * (p - ac));
         }
         return result;
     }
