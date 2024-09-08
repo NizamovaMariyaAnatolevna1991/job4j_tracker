@@ -25,7 +25,8 @@ public class Item {
         this.created = created;
     }
 
-    public LocalDateTime getCreated() { return created; }
+    public LocalDateTime getCreated() {
+        return created; }
 
     public int getId() {
         return id;
