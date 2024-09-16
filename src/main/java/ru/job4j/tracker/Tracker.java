@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import ru.job4j.pojo.Book;
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
@@ -48,13 +50,15 @@ public class Tracker {
         return index != -1 ? items[index] : null;
     }
 
-    /*public boolean replace(int idnew, Item itemnew) {
-        Item item = new Item();
-        int id = item.getId();
-        Item[] items = new Item[items.length];
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean result = false;
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
+            result = true;
         }
-    }*/
+        return result;
+    }
 }
 

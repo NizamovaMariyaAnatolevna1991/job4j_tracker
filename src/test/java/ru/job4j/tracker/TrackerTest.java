@@ -52,7 +52,7 @@ public class TrackerTest {
         assertThat(result[1].getName()).isEqualTo(second.getName());
     }
 
-   /* @Test
+   @Test
     public void whenReplaceItemIsSuccessful() {
         Tracker tracker = new Tracker();
         Item item = new Item("Bug");
@@ -72,5 +72,5 @@ public class TrackerTest {
         boolean result = tracker.replace(1000, updateItem);
         assertThat(tracker.findById(item.getId()).getName()).isEqualTo("Bug");
         assertThat(result).isFalse();
-    }*/
+    }
 }
