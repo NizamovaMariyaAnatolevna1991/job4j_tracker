@@ -14,46 +14,47 @@ public class Tracker {
         return item;
     }
 
-    public Item findById(int id) {
-        Item rsl = null;
-        for (int index = 0; index < size; index++) {
-            Item item = items[index];
-            if (item.getId() == id) {
-                rsl = item;
-                break;
-            }
-        }
-        return rsl;
-    }
-
     public Item[] findAll() {
-        Item[] result = new Item[items.length];
-        int size = 0;
-        for (int index = 0; index < items.length; index++) {
-            Item item = items[index];
-            if (item != null) {
-                result[size] = item;
-                size++;
-            }
-        }
-        result = Arrays.copyOf(result, size);
-        return result;
+        return Arrays.copyOf(items, size);
     }
 
     public Item[] findByName(String key) {
-        Item[] result = new Item[items.length];
-        int size = 0;
-        for (int index = 0; index < items.length; index++) {
+        Item[] result = new Item[size];
+        int count = 0;
+        for (int index = 0; index < size; index++) {
             Item item = items[index];
-            if (item != null) {
-                if (key.equals(item.getName())) {
-                    result[size] = item;
-                    size++;
-                }
+            if (key.equals(item.getName())) {
+                result[count] = item;
+                count++;
             }
         }
-        result = Arrays.copyOf(result, size);
+        result = Arrays.copyOf(result, count);
         return result;
     }
+
+    private int indexOf(int id) {
+        int result = -1;
+        for (int index = 0; index < size; index++) {
+            if (items[index].getId() == id) {
+                result = index;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public Item findById(int id) {
+        int index = indexOf(id);
+        return index != -1 ? items[index] : null;
+    }
+
+    /*public boolean replace(int idnew, Item itemnew) {
+        Item item = new Item();
+        int id = item.getId();
+        Item[] items = new Item[items.length];
+        for (int index = 0; index < size; index++) {
+            Item item = items[index];
+        }
+    }*/
 }
 
