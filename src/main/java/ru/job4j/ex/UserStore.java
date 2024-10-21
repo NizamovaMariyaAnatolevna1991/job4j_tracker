@@ -21,7 +21,6 @@ public class UserStore {
         User[] users = {
                 new User("Petr Arsentev", true)
         };
-
         try {
             User user = findUser(users, "Pe");
             if (validate(user)) {
