@@ -36,7 +36,7 @@ class ValidateInputTest {
     void whenValidInputMinus() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"-5","1"}
+                new String[] {"-5", "1"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu:");
