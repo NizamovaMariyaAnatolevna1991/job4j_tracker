@@ -11,4 +11,3 @@ public class PassportOfficeTest {
         office.add(citizen);
         assertThat(office.get(citizen.getPassport())).isEqualTo(citizen);
     }
-}
