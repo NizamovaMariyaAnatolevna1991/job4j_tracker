@@ -13,14 +13,7 @@ public class BankService {
     }
 
     public void deleteUser(String passport) {
-        Iterator<User> iterator = users.keySet().iterator();
-        while (iterator.hasNext()) {
-            User user = iterator.next();
-            if (user.getPassport().equals(passport)) {
-                iterator.remove();
-                break;
-            }
-        }
+        users.remove(new User(passport, ""));
     }
 
     public void addAccount(String passport, Account account) {
