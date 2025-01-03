@@ -12,7 +12,6 @@ public class AnalyzeByMap {
                 totalSubject++;
             }
         }
-
         return totalScore / totalSubject;
     }
 
