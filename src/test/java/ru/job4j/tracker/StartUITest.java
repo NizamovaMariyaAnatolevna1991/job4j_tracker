@@ -221,7 +221,7 @@ class StartUITest {
     }
 
     @Test
-    void ItemDescByName() {
+    void whenItemDescByName() {
         List<Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
         List<Item> expected =  Arrays.asList(new Item("test3"), new Item("test2"), new Item("test1"));
         items.sort(new ItemDescByName());
