@@ -214,16 +214,16 @@ class StartUITest {
 
     @Test
     void whenItemAscByName() {
-        List <Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
-        List <Item> expected =  Arrays.asList(new Item("test1"), new Item("test2"), new Item("test3"));
+        List<Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
+        List<Item> expected =  Arrays.asList(new Item("test1"), new Item("test2"), new Item("test3"));
         items.sort(new ItemAscByName());
         assertThat(items.equals(expected)).isTrue();
     }
 
     @Test
     void ItemDescByName() {
-        List <Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
-        List <Item> expected =  Arrays.asList(new Item("test3"), new Item("test2"), new Item("test1"));
+        List<Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
+        List<Item> expected =  Arrays.asList(new Item("test3"), new Item("test2"), new Item("test1"));
         items.sort(new ItemDescByName());
         assertThat(items.equals(expected)).isTrue();
     }
