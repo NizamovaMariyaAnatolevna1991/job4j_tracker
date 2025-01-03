@@ -7,6 +7,9 @@ import ru.job4j.tracker.input.MockInput;
 import ru.job4j.tracker.output.Output;
 import ru.job4j.tracker.output.StubOutput;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StartUITest {
@@ -29,7 +32,7 @@ class StartUITest {
     void whenReplaceItem() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Replaced item")); /* Добавляется в tracker новая заявка */
+        Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input input = new MockInput(
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
@@ -46,7 +49,7 @@ class StartUITest {
     void whenDeleteItem() {
         Output output = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("Deleted item")); /* Добавляется в tracker новая заявка */
+        Item item = tracker.add(new Item("Deleted item"));
         Input input = new MockInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
@@ -207,5 +210,21 @@ class StartUITest {
                         + "0. Завершить программу" + ln
                         + "=== Завершение программы ===" + ln
         );
+    }
+
+    @Test
+    void whenItemAscByName() {
+        List <Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
+        List <Item> expected =  Arrays.asList(new Item("test1"), new Item("test2"), new Item("test3"));
+        items.sort(new ItemAscByName());
+        assertThat(items.equals(expected)).isTrue();
+    }
+
+    @Test
+    void ItemDescByName() {
+        List <Item> items =  Arrays.asList(new Item("test2"), new Item("test1"), new Item("test3"));
+        List <Item> expected =  Arrays.asList(new Item("test3"), new Item("test2"), new Item("test1"));
+        items.sort(new ItemDescByName());
+        assertThat(items.equals(expected)).isTrue();
     }
 }
