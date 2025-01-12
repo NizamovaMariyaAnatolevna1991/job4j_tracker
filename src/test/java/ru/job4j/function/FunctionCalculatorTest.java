@@ -27,7 +27,7 @@ class FunctionCalculatorTest {
     @Test
     void whenLinearFunctionThenShowResults() {
         FunctionCalculator function = new FunctionCalculator();
-        List<Double> result = function.diapason(1, 4, x -> Math.pow(3,x));
+        List<Double> result = function.diapason(1, 4, x -> Math.pow(3, x));
         List<Double> expected = Arrays.asList(3D, 9D, 27D);
         assertThat(result).containsAll(expected);
     }
