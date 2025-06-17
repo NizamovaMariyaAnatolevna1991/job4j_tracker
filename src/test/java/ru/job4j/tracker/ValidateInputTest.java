@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import ru.job4j.tracker.input.Input;
@@ -14,7 +15,7 @@ class ValidateInputTest {
     void whenInvalidInput() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"one", "1"}
+                new String[]{"one", "1"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu:");
@@ -25,7 +26,7 @@ class ValidateInputTest {
     void whenValidInput() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"2"}
+                new String[]{"2"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu:");
@@ -36,7 +37,7 @@ class ValidateInputTest {
     void whenValidInputMore() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"2", "3", "4", "1"}
+                new String[]{"2", "3", "4", "1"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu:");
@@ -53,7 +54,7 @@ class ValidateInputTest {
     void whenValidInputMinus() {
         Output output = new StubOutput();
         Input in = new MockInput(
-                new String[] {"-5", "1"}
+                new String[]{"-5", "1"}
         );
         ValidateInput input = new ValidateInput(output, in);
         int selected = input.askInt("Enter menu:");
