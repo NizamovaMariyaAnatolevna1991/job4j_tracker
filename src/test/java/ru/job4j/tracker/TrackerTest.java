@@ -2,17 +2,14 @@ package ru.job4j.tracker;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 public class TrackerTest {
     @Test
     public void whenTestFindById() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item bug = new Item("Bug");
         Item item = tracker.add(bug);
         Item result = tracker.findById(item.getId());
@@ -21,7 +18,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindAll() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item first = new Item("First");
         tracker.add(first);
         List<Item> result = tracker.findAll();
@@ -30,7 +27,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckArrayLength() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -44,7 +41,7 @@ public class TrackerTest {
 
     @Test
     public void whenTestFindByNameCheckSecondItemName() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item first = new Item("First");
         Item second = new Item("Second");
         tracker.add(first);
@@ -58,7 +55,7 @@ public class TrackerTest {
 
    @Test
     public void whenReplaceItemIsSuccessful() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = new Item("Bug");
         tracker.add(item);
         int id = item.getId();
@@ -69,7 +66,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplaceItemIsNotSuccessful() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = new Item("Bug");
         tracker.add(item);
         Item updateItem = new Item("Bug with description");
@@ -80,7 +77,7 @@ public class TrackerTest {
 
     @Test
     public void whenDeleteItemIsSuccessful() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = new Item("Bug");
         tracker.add(item);
         int id = item.getId();
@@ -90,7 +87,7 @@ public class TrackerTest {
 
     @Test
     public void whenDeleteItemIsNotSuccessful() {
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = new Item("Bug");
         tracker.add(item);
         tracker.delete(1000);

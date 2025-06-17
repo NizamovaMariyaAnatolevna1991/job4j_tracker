@@ -19,19 +19,19 @@ class StartUITest {
         Input input = new MockInput(
                 new String[] {"0", "Item name", "1"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         UserAction[] actions = {
                 new CreateAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         assertThat(tracker.findAll().get(0).getName()).isEqualTo("Item name");
     }
 
     @Test
     void whenReplaceItem() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
         Input input = new MockInput(
@@ -41,14 +41,14 @@ class StartUITest {
                 new ReplaceAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         assertThat(tracker.findById(item.getId()).getName()).isEqualTo(replacedName);
     }
 
     @Test
     void whenDeleteItem() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item item = tracker.add(new Item("Deleted item"));
         Input input = new MockInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
@@ -57,7 +57,7 @@ class StartUITest {
                 new DeleteAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         assertThat(tracker.findById(item.getId())).isNull();
     }
 
@@ -67,11 +67,11 @@ class StartUITest {
         Input input = new MockInput(
                 new String[] {"0"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         UserAction[] actions = {
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         assertThat(output.toString()).isEqualTo(
                "Меню:" + System.lineSeparator()
                         + "0. Завершить программу" + System.lineSeparator()
@@ -82,7 +82,7 @@ class StartUITest {
     @Test
     void whenReplaceItemTestOutputIsSuccessfully() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item one = tracker.add(new Item("test1"));
         String replaceName = "New Test Name";
         Input input = new MockInput(
@@ -92,7 +92,7 @@ class StartUITest {
                 new ReplaceAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "Меню:" + ln
@@ -110,7 +110,7 @@ class StartUITest {
     @Test
     void whenFindAllItemTestOutputIsSuccessfully() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item one = tracker.add(new Item("test1"));
         Item two = tracker.add(new Item("test2"));
         Input input = new MockInput(
@@ -120,7 +120,7 @@ class StartUITest {
                 new FindAllAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "Меню:" + ln
@@ -139,7 +139,7 @@ class StartUITest {
     @Test
     void whenFindByNameItemTestOutputIsSuccessfully() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item one = tracker.add(new Item("test1"));
         Input input = new MockInput(
                 new String[] {"0", "test1", "1"}
@@ -148,7 +148,7 @@ class StartUITest {
                 new FindByNameAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "Меню:" + ln
@@ -166,7 +166,7 @@ class StartUITest {
     @Test
     void whenFindByIdItemTestOutputIsSuccessfully() {
         Output output = new StubOutput();
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         Item one = tracker.add(new Item("test1"));
         Input input = new MockInput(
                 new String[] {"0", String.valueOf(one.getId()), "1"}
@@ -175,7 +175,7 @@ class StartUITest {
                 new FindByIdAction(output),
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "Меню:" + ln
@@ -196,11 +196,11 @@ class StartUITest {
         Input input = new MockInput(
                 new String[] {"7", "0"}
         );
-        Tracker tracker = new Tracker();
+        Store tracker = new SqlTracker();
         UserAction[] actions = new UserAction[]{
                 new ExitAction(output)
         };
-        new StartUI(output).init(input, tracker, actions);
+        new StartUI(output).init(input, tracker, List.of(actions));
         String ln = System.lineSeparator();
         assertThat(output.toString()).isEqualTo(
                 "Меню:" + ln

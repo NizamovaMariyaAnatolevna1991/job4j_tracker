@@ -6,7 +6,8 @@ public class SingleTracker {
 
     private static SingleTracker instance = null;
 
-    private Tracker tracker = new Tracker();
+    // private MemTracker tracker = new MemTracker();
+    private Store tracker = new SqlTracker();
 
     private SingleTracker() {
     }
@@ -23,7 +24,7 @@ public class SingleTracker {
     }
 
     public List<Item> findAll() {
-    return tracker.findAll();
+        return tracker.findAll();
     }
 
     public List<Item> findByName(String key) {
