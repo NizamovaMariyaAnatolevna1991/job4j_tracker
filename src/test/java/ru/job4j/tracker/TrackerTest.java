@@ -53,7 +53,7 @@ public class TrackerTest {
         assertThat(result.get(1).getName()).isEqualTo(second.getName());
     }
 
-   @Test
+    @Test
     public void whenReplaceItemIsSuccessful() {
         Store tracker = new SqlTracker();
         Item item = new Item("Bug");
